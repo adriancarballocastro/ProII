@@ -1,0 +1,790 @@
+        -:    0:Source:C:/Users/carba/OneDrive/Escritorio/espanol/CLion/P2/P2/main.c
+        -:    0:Graph:C:\Users\carba\OneDrive\Escritorio\espanol\CLion\P2\P2\cmake-build-debug-coverage\CMakeFiles\main.dir\main.c.gcno
+        -:    0:Data:C:\Users\carba\OneDrive\Escritorio\espanol\CLion\P2\P2\cmake-build-debug-coverage\CMakeFiles\main.dir\main.c.gcda
+        -:    0:Runs:1
+        -:    1:/*
+        -:    2: * TITLE: PROGRAMMING II LABS
+        -:    3: * SUBTITLE: Practical 2
+        -:    4: * AUTHOR 1: Carballo Castro,Adrián LOGIN 1: adrian.carballo
+        -:    5: * AUTHOR 2: Rodríguez Rodríguez,Eladio LOGIN 2: eladio.rodriguez
+        -:    6: * GROUP: 4.1
+        -:    7: * DATE: 14 / 04 / 2023
+        -:    8: */
+        -:    9:
+        -:   10:
+        -:   11:#include <stdio.h>
+        -:   12:#include <stdlib.h>
+        -:   13:#include <string.h>
+        -:   14:
+        -:   15:#include "types.h"
+        -:   16:#include "jury_list.h"
+        -:   17:
+        -:   18:#define MAX_BUFFER 255
+        -:   19:
+        -:   20:bool new(char *param1,char *param2,char *param3,tListJ *J);
+        -:   21:bool create(char *param1,char *param2,tListJ *J);
+        -:   22:bool vote(char *param1,char *param2, tListJ *J);
+        -:   23:bool stats(tListJ *J);
+        -:   24:bool disqualify(char *param1,tListJ *J);
+        -:   25:bool delete(tListJ *J);
+        -:   26:bool winner(tListJ *J);
+        -:   27:
+        -:   28:
+function create called 4 returned 100% blocks executed 83%
+        4:   29:bool create(char *param1,char *param2,tListJ *J){
+        -:   30:    tItemJ item;
+        4:   31:    strcpy(item.juryName, param1);
+        4:   32:    item.totalVoters= atoi(param2);
+        4:   32-block  0
+call    0 returned 4
+        4:   33:    item.validVotes=0;
+        4:   34:    item.nullVotes=0;
+        4:   35:    createEmptyListP(&item.participantList);
+call    0 returned 4
+        -:   36:                                                                            //Creamos un jurado
+        4:   37:    if(findItemJ(param1,*J) == NULLJ){
+call    0 returned 4
+branch  1 taken 4 (fallthrough)
+branch  2 taken 0
+        4:   38:        if(insertItemJ(item, J)){                                           //Insertamos si no existe si no marca error
+        4:   38-block  0
+call    0 returned 4
+branch  1 taken 4 (fallthrough)
+branch  2 taken 0
+        4:   39:            printf("* Create: jury %s totalvoters %s\n",param1,param2);
+        4:   39-block  0
+call    0 returned 4
+        4:   40:            return true;
+        4:   40-block  0
+        -:   41:        }
+        -:   42:    }
+    #####:   43:    else return false;
+    %%%%%:   43-block  0
+        -:   44:    //-Objetivo: Añadir un jurado con el número de votantes indicado ordenado según el campo juryName
+        -:   45:    //-Entrada: tListJ: Lista de jurados
+        -:   46:    //List: Lista a modificar
+        -:   47:    //-Salida: List: Lista modificada si el jurado no existe
+        -:   48:    //-Postcondición: La lista pudo haber sido modificada
+    #####:   49:}
+    %%%%%:   49-block  0
+        -:   50:
+function new called 0 returned 0% blocks executed 0%
+    #####:   51:bool new(char *param1,char *param2,char *param3,tListJ *J){
+        -:   52:    tItemP item;
+        -:   53:
+    #####:   54:    strcpy(item.participantName, param2);
+    #####:   55:    if(strcmp(param3,"eu")==0){
+    %%%%%:   55-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   56:        item.EUParticipant=true;
+    %%%%%:   56-block  0
+        -:   57:    }
+        -:   58:    else{
+    #####:   59:        item.EUParticipant=false;
+    %%%%%:   59-block  0
+        -:   60:    }
+    #####:   61:    item.numVotes=0;
+        -:   62:                                                    //Creamos el participante
+        -:   63:
+    #####:   64:    tPosJ posJury = findItemJ(param1,*J);           //Comprueba que el jurado donde se quiere insertar el participante existe
+    %%%%%:   64-block  0
+call    0 never executed
+        -:   65:
+    #####:   66:    if(posJury != NULLJ){
+branch  0 never executed
+branch  1 never executed
+        -:   67:        tItemJ jury;
+    #####:   68:        jury = getItemJ(posJury,*J);
+    %%%%%:   68-block  0
+call    0 never executed
+    #####:   69:        tPosP posPart = findItemP(param2,jury.participantList);
+call    0 never executed
+    #####:   70:        if(posPart == NULLP){
+branch  0 never executed
+branch  1 never executed
+    #####:   71:                    if(isEmptyListP(jury.participantList))
+    %%%%%:   71-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   72:                        createEmptyListP(&jury.participantList);
+    %%%%%:   72-block  0
+call    0 never executed
+        -:   73:
+    #####:   74:                    if(insertItemP(item, &jury.participantList)==true){
+    %%%%%:   74-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   75:                            updateItemJ(jury,posJury,J);                            //Inserta el item del participante
+    %%%%%:   75-block  0
+call    0 never executed
+        -:   76:
+        -:   77:
+        -:   78:                            char participantLocation[8];
+    #####:   79:                            if(item.EUParticipant==true){
+branch  0 never executed
+branch  1 never executed
+    #####:   80:                                strcpy(participantLocation, "eu");
+    %%%%%:   80-block  0
+        -:   81:                            }
+        -:   82:                            else{
+    #####:   83:                                strcpy(participantLocation ,"non-eu");
+    %%%%%:   83-block  0
+        -:   84:                            }
+    #####:   85:                            printf("* New: jury %s participant %s location %s\n",param1,item.participantName,participantLocation);
+    %%%%%:   85-block  0
+call    0 never executed
+    #####:   86:                            return true;
+    #####:   87:                    }else return false;
+    %%%%%:   87-block  0
+    #####:   88:            }else return false;
+    %%%%%:   88-block  0
+    #####:   89:        }else return false;
+    %%%%%:   89-block  0
+        -:   90:    //-Objetivo: Añadir un participante al jurado indicando ordenándolo según el campo participantName
+        -:   91:    //-Entrada: tListJ: Lista de jurados
+        -:   92:    //          char: nombre del jurado y participante
+        -:   93:    //List: Lista a modificar
+        -:   94:    //-Salida: List: Lista modificada si el jurado existe y el participante no está en esa lista
+        -:   95:    //-Postcondición: La lista pudo haber sido modificada
+        -:   96:}
+        -:   97:
+function vote called 0 returned 0% blocks executed 0%
+    #####:   98:bool vote(char *param1,char *param2, tListJ *J){
+        -:   99:
+    #####:  100:    tPosJ pos1 = findItemJ(param1,*J);                  //Comprueba que el jurado exista
+    %%%%%:  100-block  0
+call    0 never executed
+        -:  101:
+    #####:  102:    if(pos1 != NULLJ){
+branch  0 never executed
+branch  1 never executed
+    #####:  103:        tItemJ jury = getItemJ(pos1,*J);
+    %%%%%:  103-block  0
+call    0 never executed
+        -:  104:
+    #####:  105:        tPosP pos2 = findItemP(param2,jury.participantList);            //Comprueba que el participante exista
+call    0 never executed
+        -:  106:
+    #####:  107:        if(pos2 != NULLP){
+branch  0 never executed
+branch  1 never executed
+    #####:  108:            tItemP participant = getItemP(pos2,jury.participantList);
+    %%%%%:  108-block  0
+call    0 never executed
+    #####:  109:            (participant.numVotes)++;
+    #####:  110:            (jury.validVotes)++;                                //Suma los votos a los del participante y a los del jurado
+        -:  111:
+        -:  112:
+        -:  113:
+    #####:  114:            updateItemP(participant,pos2,&jury.participantList);
+call    0 never executed
+    #####:  115:            updateItemJ(jury,pos1,J);
+call    0 never executed
+        -:  116:
+        -:  117:
+        -:  118:            char participantLocation[8];
+    #####:  119:            if (participant.EUParticipant == true) {
+branch  0 never executed
+branch  1 never executed
+    #####:  120:                strcpy(participantLocation, "eu");
+    %%%%%:  120-block  0
+        -:  121:            } else {
+    #####:  122:                strcpy(participantLocation, "non-eu");
+    %%%%%:  122-block  0
+        -:  123:            }
+    #####:  124:            printf("* Vote: jury %s participant %s location %s numvotes %d\n", param1, param2, participantLocation,participant.numVotes);
+    %%%%%:  124-block  0
+call    0 never executed
+    #####:  125:            return true;
+        -:  126:
+        -:  127:        }else{
+    #####:  128:            jury.nullVotes++;                   //Si no existe el participante cuenta su voto como nulo en el jurado correspondiente
+    #####:  129:            updateItemJ(jury,pos1,J);
+    %%%%%:  129-block  0
+call    0 never executed
+        -:  130:
+    #####:  131:            printf("+ Error: Vote not possible. Participant %s not found in jury %s. NULLVOTE\n",param2,param1);
+call    0 never executed
+    #####:  132:            return true;
+        -:  133:        }
+    #####:  134:    }else return false;
+    %%%%%:  134-block  0
+        -:  135:
+        -:  136:    //-Objetivo: Sumar un voto al participante de un jurado en concreto
+        -:  137:    //-Entrada: tListJ: Lista de jurados
+        -:  138:    //          char: nombre del jurado y participante
+        -:  139:    //List: Lista a modificar
+        -:  140:    //-Salida: List: Lista modificada si el participante existe
+        -:  141:    //-Postcondición: La lista pudo haber sido modificada
+        -:  142:}
+        -:  143:
+function stats called 4 returned 100% blocks executed 52%
+        4:  144:bool stats(tListJ *J) {
+        4:  145:    if (!isEmptyListJ(*J)) {
+        4:  145-block  0
+call    0 returned 4
+branch  1 taken 4 (fallthrough)
+branch  2 taken 0
+        -:  146:        tPosJ posJury;
+        -:  147:        tItemJ jury;
+       14:  148:        for (posJury = firstJ(*J); posJury != NULLJ; posJury = nextJ(posJury, *J)) {            //Recorre la lista de jurados
+        4:  148-block  0
+call    0 returned 4
+call    1 returned 10
+       14:  148-block  1
+branch  2 taken 10
+branch  3 taken 4 (fallthrough)
+       10:  149:            jury = getItemJ(posJury, *J);
+       10:  149-block  0
+call    0 returned 10
+       10:  150:            printf("Jury %s\n", jury.juryName);
+call    0 returned 10
+       10:  151:            if (isEmptyListP(jury.participantList)) {               //Comprueba que el jurado tenga algún participante
+call    0 returned 10
+branch  1 taken 10 (fallthrough)
+branch  2 taken 0
+       10:  152:                printf("No participants\n");
+       10:  152-block  0
+call    0 returned 10
+        -:  153:            } else {
+        -:  154:
+        -:  155:                tPosP posPart;
+        -:  156:                tItemP part;
+    #####:  157:                for (posPart = firstP(jury.participantList);posPart != NULLP;posPart = nextP(posPart,jury.participantList)) {       //Recorre la lista de participantes
+    %%%%%:  157-block  0
+call    0 never executed
+call    1 never executed
+    %%%%%:  157-block  1
+branch  2 never executed
+branch  3 never executed
+    #####:  158:                    part = getItemP(posPart,jury.participantList);
+    %%%%%:  158-block  0
+call    0 never executed
+        -:  159:
+        -:  160:                    
+        -:  161:                    char participantLocation[8];
+    #####:  162:                    if (part.EUParticipant == true) {
+branch  0 never executed
+branch  1 never executed
+    #####:  163:                        strcpy(participantLocation, "eu");
+    %%%%%:  163-block  0
+        -:  164:                    } else {
+    #####:  165:                        strcpy(participantLocation, "non-eu");
+    %%%%%:  165-block  0
+        -:  166:                    }
+        -:  167:                    float porcentaje;                   //Calcula el porcentaje de votos
+    #####:  168:                    if(jury.validVotes == 0){
+    %%%%%:  168-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  169:                        porcentaje = 0;
+    %%%%%:  169-block  0
+        -:  170:                    }
+    #####:  171:                    else porcentaje = (float)part.numVotes / (float)jury.validVotes;
+    %%%%%:  171-block  0
+        -:  172:
+    #####:  173:                    printf("Participant %s location %s numvotes %d (%.2f%%)\n",part.participantName,participantLocation,part.numVotes,porcentaje*100);
+    %%%%%:  173-block  0
+call    0 never executed
+        -:  174:                }
+        -:  175:
+        -:  176:
+        -:  177:            }
+       10:  178:            printf("Nullvotes %d\n", jury.nullVotes);                   //Votos nulos
+       10:  178-block  0
+call    0 returned 10
+       10:  179:            int votostotales = jury.validVotes + jury.nullVotes;
+       10:  180:            float porcentaje =((float)(votostotales) )/ (float )jury.totalVoters;           //Calcula la participación
+        -:  181:
+       10:  182:            printf("Participation: %d votes from 10 voters (%.2f%%)\n\n", votostotales, porcentaje*100);
+call    0 returned 10
+        -:  183:        }
+        4:  184:        return true;
+        4:  184-block  0
+    #####:  185:    } else return false;
+    %%%%%:  185-block  0
+        -:  186:
+        -:  187:    //-Objetivo: Mostrar datos sobre la lista y sus integrantes
+        -:  188:    //-Entrada: tListJ: Lista de jurados
+        -:  189:    //List: Lista a modificar
+        -:  190:}
+        -:  191:
+function disqualify called 0 returned 0% blocks executed 0%
+    #####:  192:bool disqualify(char *param1,tListJ *J){
+    #####:  193:    if(isEmptyListJ(*J)){
+    %%%%%:  193-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  194:        return false;
+    %%%%%:  194-block  0
+        -:  195:    }
+        -:  196:    else{
+        -:  197:        tPosJ posJury;
+        -:  198:        tItemJ jury;
+    #####:  199:        for (posJury = firstJ(*J); posJury != NULLJ; posJury = nextJ(posJury, *J)) {                //Recorremos la lista de jurados
+    %%%%%:  199-block  0
+call    0 never executed
+    %%%%%:  199-block  1
+call    1 never executed
+    %%%%%:  199-block  2
+branch  2 never executed
+branch  3 never executed
+        -:  200:
+    #####:  201:            jury = getItemJ(posJury, *J);
+    %%%%%:  201-block  0
+call    0 never executed
+    #####:  202:            printf("Jury %s\n",jury.juryName);
+call    0 never executed
+    #####:  203:            tPosP posPart = findItemP(param1,jury.participantList);                                 //Busca al participante
+call    0 never executed
+    #####:  204:            if(posPart != NULLP){
+branch  0 never executed
+branch  1 never executed
+    #####:  205:                tItemP part = getItemP(posPart,jury.participantList);
+    %%%%%:  205-block  0
+call    0 never executed
+    #####:  206:                jury.nullVotes += part.numVotes;                                                    //Pasa los votos del participante a nulos
+    #####:  207:                jury.validVotes -= part.numVotes;                                                   //Modifica la cantidad de votos válidos
+    #####:  208:                deleteAtPositionP(posPart,&jury.participantList);                                   //Borra al participante
+call    0 never executed
+    #####:  209:                updateItemJ(jury,posJury,J);                                                        //Actualiza la lista
+call    0 never executed
+    #####:  210:                printf("Participant %s disqualified\n\n",param1);
+call    0 never executed
+        -:  211:            }
+        -:  212:        }
+    #####:  213:        return true;
+    %%%%%:  213-block  0
+        -:  214:    }
+        -:  215:    //-Objetivo: Eliminar un participante de todas las listas de todos los jurados en el que esté
+        -:  216:    //-Entrada: tListJ: Lista de jurados
+        -:  217:    //          char: nombre del participante
+        -:  218:    //List: Lista a modificar
+        -:  219:    //-Salida: List: Lista modificada si existe algún participante en la lista
+        -:  220:    //-Postcondición: La lista pudo haber sido modificada
+        -:  221:}
+        -:  222:
+function delete called 0 returned 0% blocks executed 0%
+    #####:  223:bool delete(tListJ *J) {
+    #####:  224:    if (isEmptyListJ(*J)) {         //Comprueba si la lista está vacía
+    %%%%%:  224-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  225:        return false;
+    %%%%%:  225-block  0
+        -:  226:    } else {
+        -:  227:        tPosJ posJury;
+        -:  228:        tItemJ jury;
+    #####:  229:        for (posJury = firstJ(*J); posJury != NULLJ; posJury = nextJ(posJury, *J)) {        //Recorre la lista de jurados
+    %%%%%:  229-block  0
+call    0 never executed
+    %%%%%:  229-block  1
+call    1 never executed
+    %%%%%:  229-block  2
+branch  2 never executed
+branch  3 never executed
+    #####:  230:            jury = getItemJ(posJury, *J);
+    %%%%%:  230-block  0
+call    0 never executed
+    #####:  231:            if (jury.validVotes == 0) {                 //Si tiene 0 votos válidos borra el jurado
+branch  0 never executed
+branch  1 never executed
+    #####:  232:                deleteAtPositionJ(posJury, J);
+    %%%%%:  232-block  0
+call    0 never executed
+    #####:  233:                printf("* Remove: jury %s\n", jury.juryName);
+call    0 never executed
+    #####:  234:                posJury = previousJ(posJury,*J);
+call    0 never executed
+        -:  235:            }
+        -:  236:        }
+    #####:  237:        return true;
+    %%%%%:  237-block  0
+        -:  238:    }
+        -:  239:    //-Objetivo: Eliminar todos los jurados que tienen 0 votos válidos
+        -:  240:    //-Entrada: tListJ: Lista de jurados
+        -:  241:    //List: Lista a modificar
+        -:  242:    //-Salida: List: Lista modificada si hay algún jurado con 0 votos válidos
+        -:  243:    //-Postcondición: La lista pudo haber sido modificada
+        -:  244:}
+        -:  245:
+function winner called 0 returned 0% blocks executed 0%
+    #####:  246:bool winner(tListJ *J) {
+    #####:  247:    if (isEmptyListJ(*J)) {                 //Comprueba si la lista está vacía
+    %%%%%:  247-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  248:        return false;
+    %%%%%:  248-block  0
+        -:  249:    } else {
+        -:  250:        tPosJ posJury;
+        -:  251:        tItemJ jury;
+    #####:  252:        for (posJury = firstJ(*J); posJury != NULLJ; posJury = nextJ(posJury, *J)) {            //Recorre la lista de jurados
+    %%%%%:  252-block  0
+call    0 never executed
+    %%%%%:  252-block  1
+call    1 never executed
+    %%%%%:  252-block  2
+branch  2 never executed
+branch  3 never executed
+    #####:  253:            jury = getItemJ(posJury, *J);
+    %%%%%:  253-block  0
+call    0 never executed
+    #####:  254:            printf("Jury %s\n", jury.juryName);
+call    0 never executed
+        -:  255:
+    #####:  256:            if (!isEmptyListP(jury.participantList)) {                          //Comprueba que el jurado tenga algún participante
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+        -:  257:                tPosP posPart;
+        -:  258:                tItemP part;
+    #####:  259:                tNumVotes wEU = -1, wnEU = -1;                                  //Inicializa variables para guardar el número de votos de cada ganador
+        -:  260:                tParticipantName weuName, wneuName;                             //Inicializa variables para guardar el nombre de cada ganador
+    #####:  261:                bool empateEU = false,empateNEU=false;                          //Bool para saber si hay empate
+    #####:  262:                for (posPart = firstP(jury.participantList);posPart != NULLP; posPart = nextP(posPart, jury.participantList)) {         //Recorre la lista de participantes
+    %%%%%:  262-block  0
+call    0 never executed
+    %%%%%:  262-block  1
+call    1 never executed
+    %%%%%:  262-block  2
+branch  2 never executed
+branch  3 never executed
+    #####:  263:                    part = getItemP(posPart, jury.participantList);
+    %%%%%:  263-block  0
+call    0 never executed
+        -:  264:
+        -:  265:
+        -:  266:
+    #####:  267:                    if (part.EUParticipant == true) {               //Comprueba los valores de cada participante con el mayor registrado según si pertenece a eu o no
+branch  0 never executed
+branch  1 never executed
+    #####:  268:                        if (wEU == part.numVotes) {
+    %%%%%:  268-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  269:                            empateEU = true;
+    %%%%%:  269-block  0
+        -:  270:                        } else {
+    #####:  271:                            if (wEU < part.numVotes) {
+    %%%%%:  271-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  272:                                wEU = part.numVotes;
+    #####:  273:                                strcpy(weuName,part.participantName);
+    %%%%%:  273-block  0
+        -:  274:                            }
+        -:  275:                        }
+        -:  276:                    } else {
+    #####:  277:                        if (wnEU == part.numVotes) {
+    %%%%%:  277-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  278:                            empateNEU = true;
+    %%%%%:  278-block  0
+        -:  279:                        } else {
+    #####:  280:                            if (wnEU < part.numVotes) {
+    %%%%%:  280-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  281:                                wnEU = part.numVotes;
+    #####:  282:                                strcpy(wneuName,part.participantName);
+    %%%%%:  282-block  0
+        -:  283:                            }
+        -:  284:                        }
+        -:  285:                    }
+        -:  286:                }
+        -:  287:
+        -:  288:                //Aquí se muestran los resultados de cada jurado según el resultado del recuento
+        -:  289:
+    #####:  290:                if(empateEU){                                   //Si hay empate de participantes EU
+    %%%%%:  290-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  291:                    printf("Location eu: No winner\n");
+    %%%%%:  291-block  0
+call    0 never executed
+        -:  292:                }
+        -:  293:                else{
+    #####:  294:                    if(wEU==-1){                                //Si en la lista no hay países de EU
+    %%%%%:  294-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  295:                        printf("Location eu: No winner\n");
+    %%%%%:  295-block  0
+call    0 never executed
+        -:  296:                    }
+        -:  297:                    else{                                       //Ganador EU
+    #####:  298:                        printf("Location eu: Participant %s numvotes %d\n",weuName,wEU);
+    %%%%%:  298-block  0
+call    0 never executed
+        -:  299:                    }
+        -:  300:                }
+    #####:  301:                if(empateNEU){                             //Si hay empate de participantes no-EU
+    %%%%%:  301-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  302:                    printf("Location non-eu: No winner\n\n");
+    %%%%%:  302-block  0
+call    0 never executed
+        -:  303:                }
+        -:  304:                else{
+    #####:  305:                    if(wnEU==-1){                           //Si en la lista no hay participantes de no-EU
+    %%%%%:  305-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  306:                        printf("Location non-eu: No winner\n\n");
+    %%%%%:  306-block  0
+call    0 never executed
+        -:  307:                    }
+        -:  308:                    else{                                   //Ganador no-EU
+    #####:  309:                        printf("Location non-eu: Participant %s numvotes %d\n\n",wneuName,wnEU);
+    %%%%%:  309-block  0
+call    0 never executed
+        -:  310:                    }
+        -:  311:                }
+        -:  312:
+        -:  313:
+        -:  314:            } else {                        //Resultados en caso de que un jurado no tenga ningún participante
+    #####:  315:                printf("Location eu: No winner\n");
+    %%%%%:  315-block  0
+call    0 never executed
+    #####:  316:                printf("Location non-eu: No winner\n\n");
+call    0 never executed
+        -:  317:            }
+        -:  318:        }
+    #####:  319:        return true;
+    %%%%%:  319-block  0
+        -:  320:    }
+        -:  321:    //-Objetivo: Determinar el participante con más votos begun el campo EUParticipant
+        -:  322:    //-Entrada: tListJ: Lista de jurados
+        -:  323:    //List: Lista a modificar
+        -:  324:}
+        -:  325:
+        -:  326:
+function processCommand called 8 returned 100% blocks executed 30%
+        8:  327:void processCommand(char *commandNumber, char command, char *param1, char *param2, char *param3,tListJ *J) {
+        -:  328:    tItemP item;
+        -:  329:    char participantLocation[8];
+        8:  330:    if(item.EUParticipant==true){
+        8:  330-block  0
+branch  0 taken 8 (fallthrough)
+branch  1 taken 0
+        8:  331:        strcpy(participantLocation, "eu");
+        8:  331-block  0
+        -:  332:    }
+        -:  333:    else{
+    #####:  334:        strcpy(participantLocation ,"non-eu");
+    %%%%%:  334-block  0
+        -:  335:    }
+        8:  336:    switch (command) {
+        8:  336-block  0
+branch  0 taken 4
+branch  1 taken 0
+branch  2 taken 0
+branch  3 taken 4
+branch  4 taken 0
+branch  5 taken 0
+branch  6 taken 0
+        4:  337:        case 'C':
+        4:  338:            printf("********************\n");
+        4:  338-block  0
+call    0 returned 4
+        4:  339:            printf("%s %c: jury %s totalvoters %s\n",commandNumber,command,param1,param2);
+call    0 returned 4
+        4:  340:            if(!create(param1,param2,J)){
+call    0 returned 4
+branch  1 taken 0 (fallthrough)
+branch  2 taken 4
+    #####:  341:                printf("+ Error: Create not possible\n");
+    %%%%%:  341-block  0
+call    0 never executed
+        -:  342:            }
+        4:  343:            break;
+        4:  343-block  0
+    #####:  344:        case 'N':
+    #####:  345:            printf("********************\n");
+    %%%%%:  345-block  0
+call    0 never executed
+    #####:  346:            printf("%s %c: jury %s participant %s location %s\n",commandNumber,command,param1,param2,param3);
+call    0 never executed
+    #####:  347:            if(!new(param1,param2,param3,J)){
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  348:                printf("+ Error: New not possible\n");
+    %%%%%:  348-block  0
+call    0 never executed
+        -:  349:            }
+    #####:  350:            break;
+    %%%%%:  350-block  0
+    #####:  351:        case 'V':
+    #####:  352:            printf("********************\n");
+    %%%%%:  352-block  0
+call    0 never executed
+    #####:  353:            printf("%s %c: jury %s participant %s\n",commandNumber,command,param1,param2);
+call    0 never executed
+    #####:  354:            if(!vote(param1,param2,J)){
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  355:                printf("+ Error: Vote not possible\n");
+    %%%%%:  355-block  0
+call    0 never executed
+        -:  356:            }
+    #####:  357:            break;
+    %%%%%:  357-block  0
+        4:  358:        case 'S':
+        4:  359:            printf("********************\n");
+        4:  359-block  0
+call    0 returned 4
+        4:  360:            printf("%s %c:\n",commandNumber,command);
+call    0 returned 4
+        4:  361:            if(!stats(J)){
+call    0 returned 4
+branch  1 taken 0 (fallthrough)
+branch  2 taken 4
+    #####:  362:                printf("+ Error: Stats not possible\n");
+    %%%%%:  362-block  0
+call    0 never executed
+        -:  363:            }
+        4:  364:            break;
+        4:  364-block  0
+    #####:  365:        case 'D':
+    #####:  366:            printf("********************\n");
+    %%%%%:  366-block  0
+call    0 never executed
+    #####:  367:            printf("%s %c: participant %s\n",commandNumber,command,param1);
+call    0 never executed
+    #####:  368:            if(!disqualify(param1,J)){
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  369:                printf("+ Error: Disqualify not possible\n");
+    %%%%%:  369-block  0
+call    0 never executed
+        -:  370:            }
+    #####:  371:            break;
+    %%%%%:  371-block  0
+    #####:  372:        case 'R':
+    #####:  373:            printf("********************\n");
+    %%%%%:  373-block  0
+call    0 never executed
+    #####:  374:            printf("%s %c:\n",commandNumber,command);
+call    0 never executed
+    #####:  375:            if(!delete(J)){
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  376:                printf("+ Error: Remove not possible\n");
+    %%%%%:  376-block  0
+call    0 never executed
+        -:  377:            }
+    #####:  378:            break;
+    %%%%%:  378-block  0
+    #####:  379:        default:
+        -:  380:        case 'W':
+    #####:  381:            printf("********************\n");
+    %%%%%:  381-block  0
+call    0 never executed
+    #####:  382:            printf("%s %c:\n",commandNumber,command);
+call    0 never executed
+    #####:  383:            if(!winner(J)){
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  384:                printf("+ Error: Winner not possible\n");
+    %%%%%:  384-block  0
+call    0 never executed
+        -:  385:            }
+    #####:  386:            break;
+    %%%%%:  386-block  0
+        -:  387:    }
+        8:  388:}
+        -:  389:
+function readTasks called 1 returned 100% blocks executed 93%
+        1:  390:void readTasks(char *filename) {
+        -:  391:
+        1:  392:    FILE *f = NULL;
+        -:  393:    char *commandNumber, *command, *param1, *param2, *param3;
+        1:  394:    const char delimiters[] = " \n\r";
+        -:  395:    char buffer[MAX_BUFFER];
+        -:  396:
+        -:  397:    //Creamos lista de jurado
+        -:  398:    tListJ J;
+        1:  399:    createEmptyListJ(&J);
+        1:  399-block  0
+call    0 returned 1
+        -:  400:
+        -:  401:
+        1:  402:    f = fopen(filename, "r");
+call    0 returned 1
+        -:  403:
+        1:  404:    if (f != NULL) {
+branch  0 taken 1 (fallthrough)
+branch  1 taken 0
+        -:  405:
+        9:  406:        while (fgets(buffer, MAX_BUFFER, f)) {
+        1:  406-block  0
+        9:  406-block  1
+call    0 returned 9
+branch  1 taken 8
+branch  2 taken 1 (fallthrough)
+        8:  407:            commandNumber = strtok(buffer, delimiters);
+        8:  407-block  0
+call    0 returned 8
+        8:  408:            command = strtok(NULL, delimiters);
+call    0 returned 8
+        8:  409:            param1 = strtok(NULL, delimiters);
+call    0 returned 8
+        8:  410:            param2 = strtok(NULL, delimiters);
+call    0 returned 8
+        8:  411:            param3 = strtok(NULL, delimiters);
+call    0 returned 8
+        -:  412:
+        8:  413:            processCommand(commandNumber, command[0], param1, param2, param3,&J);
+call    0 returned 8
+        -:  414:        }
+        -:  415:
+        1:  416:        fclose(f);
+        1:  416-block  0
+call    0 returned 1
+        -:  417:
+        -:  418:    } else {
+    #####:  419:        printf("Cannot open file %s.\n", filename);
+    %%%%%:  419-block  0
+call    0 never executed
+        -:  420:    }
+        1:  421:}
+        -:  422:
+        -:  423:
+function main called 1 returned 100% blocks executed 83%
+        1:  424:int main(int nargs, char **args) {
+        -:  425:
+        1:  426:    char *file_name = "create.txt";
+        -:  427:
+        1:  428:    if (nargs > 1) {
+        1:  428-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    #####:  429:        file_name = args[1];
+    %%%%%:  429-block  0
+        -:  430:    } else {
+        -:  431:        #ifdef INPUT_FILE
+        1:  432:        file_name = INPUT_FILE;
+        1:  432-block  0
+        -:  433:        #endif
+        -:  434:    }
+        -:  435:
+        1:  436:    readTasks(file_name);
+        1:  436-block  0
+call    0 returned 1
+        -:  437:
+        1:  438:    return 0;
+        -:  439:}

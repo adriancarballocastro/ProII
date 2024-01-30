@@ -1,0 +1,219 @@
+        -:    0:Source:C:/Users/carba/OneDrive/Escritorio/espanol/CLion/P2/P2/jury_list.c
+        -:    0:Graph:C:\Users\carba\OneDrive\Escritorio\espanol\CLion\P2\P2\cmake-build-debug-coverage\CMakeFiles\main.dir\jury_list.c.gcno
+        -:    0:Data:C:\Users\carba\OneDrive\Escritorio\espanol\CLion\P2\P2\cmake-build-debug-coverage\CMakeFiles\main.dir\jury_list.c.gcda
+        -:    0:Runs:1
+        -:    1:/*
+        -:    2: * TITLE: PROGRAMMING II LABS
+        -:    3: * SUBTITLE: Practical 2
+        -:    4: * AUTHOR 1: Carballo Castro,Adrián LOGIN 1: adrian.carballo
+        -:    5: * AUTHOR 2: Rodríguez Rodríguez,Eladio LOGIN 2: eladio.rodriguez
+        -:    6: * GROUP: 4.1
+        -:    7: * DATE: 14 / 04 / 2023
+        -:    8: */
+        -:    9:
+        -:   10:#include "jury_list.h"
+        -:   11:#include "participant_list.h"
+        -:   12:#include <string.h>
+        -:   13:#include <stdlib.h>
+        -:   14:#include <stdio.h>
+        -:   15:/* Write your code here... */
+        -:   16:
+function createEmptyListJ called 1 returned 100% blocks executed 100%
+        1:   17:void createEmptyListJ(tListJ *L){
+        1:   18:    L -> lastPos = NULLJ;
+        -:   19:    //Objetivo: Crea una lista vacía y la inicializa
+        -:   20:    //Salida: Una lista vacía
+        -:   21:    //Poscondición: La lista sin datos
+        1:   22:}
+        -:   23:
+        -:   24:
+        -:   25:
+function isEmptyListJ called 12 returned 100% blocks executed 100%
+       12:   26:bool isEmptyListJ(tListJ L){
+       12:   27:    return (L.lastPos == NULLJ);
+       12:   27-block  0
+        -:   28:    //-Objetivo: Determinar si la lista está vacía
+        -:   29:    //-Entrada: List: Lista a comprobar
+        -:   30:    //-Salida: Verdadero si la lista está vacía, falso en caso contrario
+        -:   31:}
+        -:   32:
+        -:   33:
+function firstJ called 4 returned 100% blocks executed 100%
+        4:   34:tPosJ firstJ(tListJ L){
+        4:   35:    return 0;
+        4:   35-block  0
+        -:   36:    //-Objetivo: Devuelve la posición del primer elemento de la lista
+        -:   37:    //-Entrada: List: Lista a manipular
+        -:   38:    //-Salida: PosJ: Posición del primer elemento
+        -:   39:    //-Precondición: La lista no está vacía
+        -:   40:}
+        -:   41:
+function lastJ called 10 returned 100% blocks executed 100%
+       10:   42:tPosJ lastJ(tListJ L){
+       10:   43:    return L.lastPos;
+       10:   43-block  0
+        -:   44:    //-Objetivo: Devuelve la posición del último elemento de la lista
+        -:   45:    //-Entrada: List: Lista a manipular
+        -:   46:    //-Salida: PosJ: Posición del último elemento
+        -:   47:    //-Precondición: La lista no está vacía
+        -:   48:}
+        -:   49:
+function previousJ called 0 returned 0% blocks executed 0%
+    #####:   50:tPosJ previousJ(tPosJ p, tListJ L){
+    #####:   51:    return --p;
+    %%%%%:   51-block  0
+        -:   52:    //-Objetivo:Devuelve la posición del elemento anterior al actual
+        -:   53:    //-Entrada: PosJ: Posición del elemento actual
+        -:   54:    //List: Lista a manipular
+        -:   55:    //-Salida: Posición del elemento anterior o nulo si es el primero
+        -:   56:    //-Precondición: PosJ es una posición válida de la lista
+        -:   57:}
+        -:   58:
+function nextJ called 10 returned 100% blocks executed 100%
+       10:   59:tPosJ nextJ(tPosJ p,tListJ L){
+       10:   60:    if(p==lastJ(L)){
+       10:   60-block  0
+call    0 returned 10
+branch  1 taken 4 (fallthrough)
+branch  2 taken 6
+        4:   61:        return NULLJ;
+        4:   61-block  0
+        -:   62:    }
+        6:   63:    else return ++p;
+        6:   63-block  0
+        -:   64:    //-Objetivo:Devuelve la posición del elemento siguiente al actual
+        -:   65:    //-Entrada: PosJ: Posición del elemento actual
+        -:   66:    //List: Lista a manipular
+        -:   67:    //-Salida: PosJ: Posición del elemento siguiente o nulo si es el último
+        -:   68:    //-Precondición: PosJ es una posición válida de la lista
+        -:   69:}
+        -:   70:
+        -:   71:
+function deleteAtPositionJ called 0 returned 0% blocks executed 0%
+    #####:   72:void deleteAtPositionJ(tPosJ p,tListJ *L){
+        -:   73:    tPosJ i;
+    #####:   74:    L -> lastPos--;
+    #####:   75:    for(i=p;i<=L -> lastPos;i++){
+    %%%%%:   75-block  0
+    %%%%%:   75-block  1
+branch  0 never executed
+branch  1 never executed
+    #####:   76:        L->data[i] = L -> data[i+1];
+    %%%%%:   76-block  0
+        -:   77:    }
+        -:   78:    //-Objetivo: Elimina de la lista un elemento con cierta posición
+        -:   79:    //-Entrada: PosL: Posición del elemento a eliminar
+        -:   80:    //List: Lista a modificar
+        -:   81:    //-Salida: List: Lista sin el elemento correspondiente a PosL
+        -:   82:    //-Precondición: PosJ es una posición válida de la lista
+        -:   83:    //-Postcondición: Las posiciones de los elementos de la lista posteriores a la de la posición eliminada pueden haber variado
+    #####:   84:}
+        -:   85:
+function findItemJ called 4 returned 100% blocks executed 91%
+        4:   86:tPosJ findItemJ(tParticipantName d, tListJ L){
+        -:   87:    tPosJ p;
+        4:   88:    if(isEmptyListJ(L)) {
+        4:   88-block  0
+call    0 returned 4
+branch  1 taken 1 (fallthrough)
+branch  2 taken 3
+        1:   89:        return NULLJ;
+        1:   89-block  0
+        -:   90:    } else {
+        6:   91:        for(p = 0; (p < L.lastPos) && (strcmp(L.data[p].juryName,d)!=0); p++);
+        3:   91-block  0
+        3:   91-block  1
+        6:   91-block  2
+branch  0 taken 3 (fallthrough)
+branch  1 taken 3
+        3:   91-block  3
+branch  2 taken 3
+branch  3 taken 0 (fallthrough)
+        3:   92:        if(strcmp(L.data[p].juryName,d)==0) {
+        3:   92-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 3
+    #####:   93:            return p;
+    %%%%%:   93-block  0
+        -:   94:        } else {
+        3:   95:            return NULLJ;
+        3:   95-block  0
+        -:   96:        }
+        -:   97:    }
+        -:   98:    //-Objetivo: Busca el primer elemento con cierto contenido en la lista
+        -:   99:    //-Entrada: ItemJ: Contenido del elemento buscado
+        -:  100:    //List: Lista donde realizar la búsqueda
+        -:  101:    //-Salida: PosJ: Posición del elemento encontrado o nulo si no se encuentra
+        -:  102:}
+        -:  103:
+        -:  104:
+function getItemJ called 10 returned 100% blocks executed 100%
+       10:  105:tItemJ getItemJ(tPosJ p, tListJ L){
+        -:  106:
+       10:  107:    return L.data[p];
+       10:  107-block  0
+        -:  108:
+        -:  109:    //-Objetivo: Recupera el contenido de un elemento de la lista
+        -:  110:    //-Entrada: PosJ: Posición del elemento buscado
+        -:  111:    //List: Lista donde realizar la búsqueda
+        -:  112:    //-Salida: ItemJ: Contenido del elemento que está en PosL
+        -:  113:    //-Precondición: Position es una posición válida en la lista
+        -:  114:}
+        -:  115:
+function updateItemJ called 0 returned 0% blocks executed 0%
+    #####:  116:void updateItemJ(tItemJ d, tPosJ p, tListJ *L){
+    #####:  117:    L -> data[p]=d;
+        -:  118:    //-Objetivo: Modifica el contenido de un elemento de la lista
+        -:  119:    //-Entrada: ItemL: Nuevo contenido a asignar al elemento en Position
+        -:  120:    //PosL: Posición del elemento que queremos modificar
+        -:  121:    //List: Lista a modificar
+        -:  122:    //-Salida: List: Lista con el contenido del elemento modificado
+        -:  123:    //-Precondición: PosL es una posición válida de la lista
+    #####:  124:}
+        -:  125:
+function insertItemJ called 4 returned 100% blocks executed 83%
+        4:  126:bool insertItemJ(tItemJ d, tListJ *L){
+        -:  127:    tPosJ i;
+        4:  128:    if(L ->lastPos == MAX-1){
+        4:  128-block  0
+branch  0 taken 0 (fallthrough)
+branch  1 taken 4
+    #####:  129:        return false;
+    %%%%%:  129-block  0
+        -:  130:    }
+        -:  131:    else{
+        4:  132:        if(isEmptyListJ(*L)){
+        4:  132-block  0
+call    0 returned 4
+branch  1 taken 1 (fallthrough)
+branch  2 taken 3
+        1:  133:            L-> lastPos++;
+        1:  134:            L-> data[L->lastPos] = d;
+        1:  134-block  0
+        -:  135:        }else{
+        3:  136:            L-> lastPos++;
+        -:  137:
+       3*:  138:            for (i=L->lastPos;(i>0)&&(strcmp(d.juryName,L->data[i-1].juryName)<0);i--) {
+        3:  138-block  0
+        3:  138-block  1
+branch  0 taken 3 (fallthrough)
+branch  1 taken 0
+        3:  138-block  2
+branch  2 taken 0
+branch  3 taken 3 (fallthrough)
+    #####:  139:                L->data[i]= L->data[i-1];
+    %%%%%:  139-block  0
+        -:  140:            }
+        3:  141:            L -> data[i]=d;
+        3:  142:            return true;
+        3:  142-block  0
+        -:  143:        }
+        -:  144:    }
+        -:  145:    //-Objetivo: Inserta un elemento en la lista según juryName
+        -:  146:    //-Entrada: ItemJ: Contenido del elemento a insertar
+        -:  147:    //List: Lista donde vamos a insertar
+        -:  148:    //-Salida: List: Lista con el elemento ItemL insertado en la posición correspondiente segín su contenido y verdadero si se ha podido insertar, falso en caso contrario
+        -:  149:    //-Precondición: La lista está inicializada
+        -:  150:    //-Postcondición: Las posiciones de los elementos de la lista posteriores a la del elemento insertado pueden haber variado
+        1:  151:}
+        1:  151-block  0

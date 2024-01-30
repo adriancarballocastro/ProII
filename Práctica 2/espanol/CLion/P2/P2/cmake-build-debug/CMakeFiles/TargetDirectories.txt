@@ -1,0 +1,5 @@
+C:/Users/carba/OneDrive/Escritorio/FIC/Primero/Segundo Cuatri/PRO/Prácticas/Practica 2/espanol/CLion/P2/P2/cmake-build-debug/CMakeFiles/test_participant_list.dir
+C:/Users/carba/OneDrive/Escritorio/FIC/Primero/Segundo Cuatri/PRO/Prácticas/Practica 2/espanol/CLion/P2/P2/cmake-build-debug/CMakeFiles/test_jury_list.dir
+C:/Users/carba/OneDrive/Escritorio/FIC/Primero/Segundo Cuatri/PRO/Prácticas/Practica 2/espanol/CLion/P2/P2/cmake-build-debug/CMakeFiles/main.dir
+C:/Users/carba/OneDrive/Escritorio/FIC/Primero/Segundo Cuatri/PRO/Prácticas/Practica 2/espanol/CLion/P2/P2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/carba/OneDrive/Escritorio/FIC/Primero/Segundo Cuatri/PRO/Prácticas/Practica 2/espanol/CLion/P2/P2/cmake-build-debug/CMakeFiles/rebuild_cache.dir

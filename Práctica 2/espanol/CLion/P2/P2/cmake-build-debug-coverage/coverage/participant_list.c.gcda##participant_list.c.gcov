@@ -1,0 +1,269 @@
+        -:    0:Source:C:/Users/carba/OneDrive/Escritorio/espanol/CLion/P2/P2/participant_list.c
+        -:    0:Graph:C:\Users\carba\OneDrive\Escritorio\espanol\CLion\P2\P2\cmake-build-debug-coverage\CMakeFiles\main.dir\participant_list.c.gcno
+        -:    0:Data:C:\Users\carba\OneDrive\Escritorio\espanol\CLion\P2\P2\cmake-build-debug-coverage\CMakeFiles\main.dir\participant_list.c.gcda
+        -:    0:Runs:1
+        -:    1:/*
+        -:    2: * TITLE: PROGRAMMING II LABS
+        -:    3: * SUBTITLE: Practical 2
+        -:    4: * AUTHOR 1: Carballo Castro,Adrián LOGIN 1: adrian.carballo
+        -:    5: * AUTHOR 2: Rodríguez Rodríguez,Eladio LOGIN 2: eladio.rodriguez
+        -:    6: * GROUP: 4.1
+        -:    7: * DATE: 14 / 04 / 2023
+        -:    8: */
+        -:    9:
+        -:   10:#include "participant_list.h"
+        -:   11:#include <string.h>
+        -:   12:#include <stdlib.h>
+        -:   13:#include <stdio.h>
+        -:   14:
+        -:   15:/* Write your code here... */
+        -:   16:
+function createEmptyListP called 4 returned 100% blocks executed 100%
+        4:   17:void createEmptyListP(tListP *L){
+        4:   18:    *L = NULLP;
+        -:   19:    //Objetivo: Crea una lista vacía y la inicializa
+        -:   20:    //Salida: Una lista vacía
+        -:   21:    //Poscondición: La lista sin datos
+        4:   22:}
+        -:   23:
+        -:   24:
+function isEmptyListP called 10 returned 100% blocks executed 100%
+       10:   25:bool isEmptyListP(tListP P){
+       10:   26:    return(P==NULLP);
+       10:   26-block  0
+        -:   27:    //-Objetivo: Determinar si la lista está vacía
+        -:   28:    //-Entrada: List: Lista a comprobar
+        -:   29:    //-Salida: Verdadero si la lista está vacía, falso en caso contrario
+        -:   30:}
+        -:   31:
+function createNodP called 0 returned 0% blocks executed 0%
+    #####:   32:bool createNodP(tPosP *q){
+    #####:   33:    *q =malloc(sizeof(struct tNodo));
+    #####:   34:    return (*q != NULL);
+    %%%%%:   34-block  0
+        -:   35:    //-Objetivo: Crear un nodo
+        -:   36:    //-Entrada: Nodo a crear
+        -:   37:    //-Precondición: Lista inicializada
+        -:   38:    //-Salida: Un nodo creado
+        -:   39:}
+        -:   40:
+function insertItemP called 0 returned 0% blocks executed 0%
+    #####:   41:bool insertItemP(tItemP item,tListP *P){
+        -:   42:    tPosP p,q;
+    #####:   43:    if(!createNodP(&q)) return false;
+    %%%%%:   43-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    %%%%%:   43-block  1
+        -:   44:    else{
+    #####:   45:        q->data=item;
+    #####:   46:        q->next = NULLP;
+    #####:   47:        if(isEmptyListP(*P)){
+    %%%%%:   47-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:   48:            *P=q;
+    %%%%%:   48-block  0
+        -:   49:        }
+    #####:   50:        else if(strcmp(item.participantName,(*P)->data.participantName)<0){
+    %%%%%:   50-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   51:            q->next =(*P);
+    #####:   52:            *P=q;
+    %%%%%:   52-block  0
+        -:   53:        }
+        -:   54:        else{
+    #####:   55:            p=findPosition(item,*P);
+    %%%%%:   55-block  0
+call    0 never executed
+    #####:   56:            q->next=p -> next;
+    #####:   57:            p -> next = q;
+        -:   58:        }
+    #####:   59:        return true;
+    %%%%%:   59-block  0
+        -:   60:    }
+        -:   61:
+        -:   62:    //-Objetivo: Inserta un elemento en la lista según el campo participantName
+        -:   63:    //-Entrada: ItemP: Contenido del elemento a insertar
+        -:   64:    //List: Lista donde vamos a insertar
+        -:   65:    //-Salida: List: Lista con el elemento ItemL insertado en la posición correspondiente segín su contenido y verdadero si se ha podido insertar, falso en caso contrario
+        -:   66:    //-Postcondición: Las posiciones de los elementos de la lista posteriores a la del elemento insertado pueden haber variado
+        -:   67:}
+        -:   68:
+function findPosition called 0 returned 0% blocks executed 0%
+    #####:   69:tPosP findPosition(tItemP item,tListP miL){
+        -:   70:    tPosP pos;
+    #####:   71:    pos= miL;
+    #####:   72:    while((pos->next != NULLP)&&
+    %%%%%:   72-block  0
+    %%%%%:   72-block  1
+branch  0 never executed
+branch  1 never executed
+    #####:   73:    (strcmp(pos->next->data.participantName,item.participantName)<0))
+    %%%%%:   73-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:   74:        pos = pos -> next;
+    %%%%%:   74-block  0
+    #####:   75:    return pos;
+    %%%%%:   75-block  0
+        -:   76:}
+        -:   77:
+function updateItemP called 0 returned 0% blocks executed 0%
+    #####:   78:void updateItemP(tItemP d,tPosP p, tListP *L){
+    #####:   79:    p -> data = d;
+        -:   80:    //-Objetivo: Modifica el contenido de un elemento de la lista
+        -:   81:    //-Entrada: ItemP: Nuevo contenido a asignar al elemento en Position
+        -:   82:    //PosP: Posición del elemento que queremos modificar
+        -:   83:    //List: Lista a modificar
+        -:   84:    //-Salida: List: Lista con el contenido del elemento modificado
+        -:   85:    //-Precondición: PosP es una posición válida de la lista
+    #####:   86:}
+        -:   87:
+        -:   88:
+        -:   89:
+function findItemP called 0 returned 0% blocks executed 0%
+    #####:   90:tPosP findItemP(tParticipantName d,tListP lista){
+        -:   91:    tPosP p;
+    #####:   92:    for(p=lista;(p!=NULL) &&(strcmp(p -> data.participantName,d)!=0);p=p->next);
+    %%%%%:   92-block  0
+    %%%%%:   92-block  1
+    %%%%%:   92-block  2
+branch  0 never executed
+branch  1 never executed
+    %%%%%:   92-block  3
+branch  2 never executed
+branch  3 never executed
+    #####:   93:    return p;
+    %%%%%:   93-block  0
+        -:   94:    //-Objetivo: Busca el primer elemento con cierto contenido en la lista
+        -:   95:    //-Entrada: ItemP: Contenido del elemento buscado
+        -:   96:    //List: Lista donde realizar la búsqueda
+        -:   97:    //-Salida: PosP: Posición del elemento encontrado o nulo si no se encuentra
+        -:   98:}
+        -:   99:
+function getItemP called 0 returned 0% blocks executed 0%
+    #####:  100:tItemP getItemP(tPosP p, tListP L){
+    #####:  101:    return p->data;
+    %%%%%:  101-block  0
+        -:  102:    //-Objetivo: Recupera el contenido de un elemento de la lista
+        -:  103:    //-Entrada: PosP: Posición del elemento buscado
+        -:  104:    //List: Lista donde realizar la búsqueda
+        -:  105:    //-Salida: ItemP: Contenido del elemento que está en PosL
+        -:  106:    //-Precondición: Position es una posición válida en la lista
+        -:  107:}
+        -:  108:
+        -:  109:
+function lastP called 0 returned 0% blocks executed 0%
+    #####:  110:tPosP lastP(tListP L){
+        -:  111:    tPosP p;
+    #####:  112:    for(p=L;p->next != NULL;p=p->next);
+    %%%%%:  112-block  0
+    %%%%%:  112-block  1
+    %%%%%:  112-block  2
+branch  0 never executed
+branch  1 never executed
+    #####:  113:    return p;
+    %%%%%:  113-block  0
+        -:  114:    //-Objetivo: Devuelve la posición del último elemento de la lista
+        -:  115:    //-Entrada: List: Lista a manipular
+        -:  116:    //-Salida: PosP: Posición del último elemento
+        -:  117:    //-Precondición: La lista no está vacía
+        -:  118:}
+        -:  119:
+function previousP called 0 returned 0% blocks executed 0%
+    #####:  120:tPosP previousP(tPosP p, tListP L){
+        -:  121:    tPosP q;
+    #####:  122:    if(p== firstP(L)){
+    %%%%%:  122-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  123:        return NULL;
+    %%%%%:  123-block  0
+        -:  124:    }else{
+    #####:  125:        for(q= firstP(L);q->next != p;q = nextP(q,L));
+    %%%%%:  125-block  0
+call    0 never executed
+    %%%%%:  125-block  1
+call    1 never executed
+    %%%%%:  125-block  2
+branch  2 never executed
+branch  3 never executed
+    #####:  126:        return q;
+    %%%%%:  126-block  0
+        -:  127:    }
+        -:  128:    //-Objetivo:Devuelve la posición del elemento anterior al actual
+        -:  129:    //-Entrada: PosP: Posición del elemento actual
+        -:  130:    //List: Lista a manipular
+        -:  131:    //-Salida: Posición del elemento anterior o nulo si es el primero
+        -:  132:    //-Precondición: PosP es una posición válida de la lista
+        -:  133:}
+        -:  134:
+function nextP called 0 returned 0% blocks executed 0%
+    #####:  135:tPosP nextP(tPosP p,tListP L){
+    #####:  136:    return p-> next;
+    %%%%%:  136-block  0
+        -:  137:    //-Objetivo: Devuelve la posición del elemento siguiente al actual
+        -:  138:    //-Entrada: PosP: Posición del elemento actual
+        -:  139:    //List: Lista a manipular
+        -:  140:    //-Salida: PosP: Posición del elemento siguiente o nulo si es el último
+        -:  141:    //-Precondición: PosL es una posición válida de la lista
+        -:  142:}
+        -:  143:
+        -:  144:
+function firstP called 0 returned 0% blocks executed 0%
+    #####:  145:tPosP firstP(tListP L){
+    #####:  146:    return L;
+    %%%%%:  146-block  0
+        -:  147:    //-Objetivo: Devuelve la posición del primer elemento de la lista
+        -:  148:    //-Entrada: List: Lista a manipular
+        -:  149:    //-Salida: PosP: Posición del primer elemento
+        -:  150:    //-Precondición: La lista no está vacía
+        -:  151:}
+        -:  152:
+        -:  153:
+function deleteAtPositionP called 0 returned 0% blocks executed 0%
+    #####:  154:void deleteAtPositionP(tPosP p ,tListP *L){
+        -:  155:    tPosP q;
+    #####:  156:    if(p == firstP(*L)){    //Se elimina en la primera posición
+    %%%%%:  156-block  0
+call    0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  157:        *L = (*L) -> next;
+    %%%%%:  157-block  0
+        -:  158:    }
+        -:  159:    else{
+    #####:  160:        if(p->next == NULL) {     //Se elimina en la última posición
+    %%%%%:  160-block  0
+branch  0 never executed
+branch  1 never executed
+    #####:  161:            for (q = *L; q->next != p; q = q->next);
+    %%%%%:  161-block  0
+    %%%%%:  161-block  1
+    %%%%%:  161-block  2
+branch  0 never executed
+branch  1 never executed
+    #####:  162:            q->next = NULL;
+    %%%%%:  162-block  0
+        -:  163:        }
+        -:  164:        else{  //Se elimina en una posición intermedia
+    #####:  165:            q=p->next;
+    #####:  166:            p -> data = q -> data;
+    #####:  167:            p -> next = q -> next;
+    #####:  168:            p=q;
+    %%%%%:  168-block  0
+        -:  169:        }
+        -:  170:    }
+    #####:  171:    free(p);
+        -:  172:    //-Objetivo: Elimina de la lista un elemento con cierta posición
+        -:  173:    //-Entrada: PosP: Posición del elemento a eliminar
+        -:  174:    //List: Lista a modificar
+        -:  175:    //-Salida: List: Lista sin el elemento correspondiente a PosL
+        -:  176:    //-Precondición: PosP es una posición válida de la lista
+        -:  177:    //-Postcondición: Las posiciones de los elementos de la lista posteriores a la de la posición eliminada pueden haber variado
+    #####:  178:}

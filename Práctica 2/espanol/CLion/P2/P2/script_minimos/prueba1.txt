@@ -1,0 +1,6 @@
+01 C Jury1 10
+03 C Jury2 10
+05 N Jury1 Country1 eu
+07 N Jury1 Country1 eu
+09 N Jury2 Country1 eu
+11 N Jury3 Country2 non-eu

@@ -1,0 +1,4 @@
+C:/Users/carba/OneDrive/Escritorio/FIC/Primero/Segundo Cuatri/PRO/Prácticas/Practica 1/espanol/CLion/Plantilla-Template_P1/Plantilla-Template_P1/P1/P1/cmake-build-debug/CMakeFiles/main.dir
+C:/Users/carba/OneDrive/Escritorio/FIC/Primero/Segundo Cuatri/PRO/Prácticas/Practica 1/espanol/CLion/Plantilla-Template_P1/Plantilla-Template_P1/P1/P1/cmake-build-debug/CMakeFiles/test_lists.dir
+C:/Users/carba/OneDrive/Escritorio/FIC/Primero/Segundo Cuatri/PRO/Prácticas/Practica 1/espanol/CLion/Plantilla-Template_P1/Plantilla-Template_P1/P1/P1/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/carba/OneDrive/Escritorio/FIC/Primero/Segundo Cuatri/PRO/Prácticas/Practica 1/espanol/CLion/Plantilla-Template_P1/Plantilla-Template_P1/P1/P1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
